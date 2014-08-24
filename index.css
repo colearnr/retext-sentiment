@@ -1,0 +1,40 @@
+
+/* Anything above 9: */
+p[data-valence="positive"], .SentenceNode[data-valence="positive"] { background-color: rgba(0, 255, 0, 0.50); }
+
+p[data-polarity="1"], .SentenceNode[data-polarity="1"] { background-color: rgba(0, 255, 0, 0.05); }
+p[data-polarity="2"], .SentenceNode[data-polarity="2"] { background-color: rgba(0, 255, 0, 0.10); }
+p[data-polarity="3"], .SentenceNode[data-polarity="3"] { background-color: rgba(0, 255, 0, 0.15); }
+p[data-polarity="4"], .SentenceNode[data-polarity="4"] { background-color: rgba(0, 255, 0, 0.20); }
+p[data-polarity="5"], .SentenceNode[data-polarity="5"] { background-color: rgba(0, 255, 0, 0.25); }
+p[data-polarity="6"], .SentenceNode[data-polarity="6"] { background-color: rgba(0, 255, 0, 0.30); }
+p[data-polarity="7"], .SentenceNode[data-polarity="7"] { background-color: rgba(0, 255, 0, 0.35); }
+p[data-polarity="8"], .SentenceNode[data-polarity="8"] { background-color: rgba(0, 255, 0, 0.40); }
+p[data-polarity="9"], .SentenceNode[data-polarity="9"] { background-color: rgba(0, 255, 0, 0.45); }
+
+/* Anything below -9: */
+
+p[data-valence="negative"], .SentenceNode[data-valence="negative"] { background-color: rgba(255, 0, 0, 0.50); }
+p[data-polarity="-1"], .SentenceNode[data-polarity="-1"] { background-color: rgba(255, 0, 0, 0.05); }
+p[data-polarity="-2"], .SentenceNode[data-polarity="-2"] { background-color: rgba(255, 0, 0, 0.10); }
+p[data-polarity="-3"], .SentenceNode[data-polarity="-3"] { background-color: rgba(255, 0, 0, 0.15); }
+p[data-polarity="-4"], .SentenceNode[data-polarity="-4"] { background-color: rgba(255, 0, 0, 0.20); }
+p[data-polarity="-5"], .SentenceNode[data-polarity="-5"] { background-color: rgba(255, 0, 0, 0.25); }
+p[data-polarity="-6"], .SentenceNode[data-polarity="-6"] { background-color: rgba(255, 0, 0, 0.30); }
+p[data-polarity="-7"], .SentenceNode[data-polarity="-7"] { background-color: rgba(255, 0, 0, 0.35); }
+p[data-polarity="-8"], .SentenceNode[data-polarity="-8"] { background-color: rgba(255, 0, 0, 0.40); }
+p[data-polarity="-9"], .SentenceNode[data-polarity="-9"] { background-color: rgba(255, 0, 0, 0.45); }
+
+
+.WordNode[data-polarity] { padding-bottom: 1px; border-bottom: 2px solid transparent; }
+
+.WordNode[data-polarity="1"] { border-color: rgb(0, 255, 255); }
+.WordNode[data-polarity="2"] { border-color: rgb(0, 255, 191); }
+.WordNode[data-polarity="3"] { border-color: rgb(0, 255, 127); }
+.WordNode[data-polarity="4"] { border-color: rgb(0, 255, 64); }
+.WordNode[data-polarity="5"] { border-color: rgb(0, 255, 0); }
+.WordNode[data-polarity="-1"] { border-color: rgb(255, 0, 255); }
+.WordNode[data-polarity="-2"] { border-color: rgb(255, 0, 191); }
+.WordNode[data-polarity="-3"] { border-color: rgb(255, 0, 127); }
+.WordNode[data-polarity="-4"] { border-color: rgb(255, 0, 64); }
+.WordNode[data-polarity="-5"] { border-color: rgb(255, 0, 0); }

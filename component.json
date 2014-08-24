@@ -1,0 +1,16 @@
+{
+  "name": "retext-sentiment-gh-pages",
+  "private": true,
+  "repository": "wooorm/retext-sentiment",
+  "dependencies": {
+    "wooorm/retext": "^0.1.0-rc.5",
+    "wooorm/retext-sentiment": "~0.0.1",
+    "component/debounce": "^1.0.0",
+    "wooorm/retext-dom": "~0.1.2",
+    "wooorm/retext-visit": "~0.1.0"
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT"
+}
