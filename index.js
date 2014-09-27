@@ -11,28 +11,32 @@ var retext = new Retext().use(sentiment).use(visit).use(DOM);
 var currentDOMTree, currentTree;
 
 function detectSentiment(value) {
-    if (currentDOMTree) {
-        currentDOMTree.parentNode.removeChild(currentDOMTree);
-    }
+    retext.parse(value, function (err, tree) {
+        if (err) throw err;
 
-    currentTree = retext.parse(value);
-
-    currentTree.visit(function (node) {
-        var DOMNode;
-
-        if (!node.DOMTagName || !node.data.polarity) {
-            return
+        if (currentDOMTree) {
+            currentDOMTree.parentNode.removeChild(currentDOMTree);
         }
 
-        DOMNode = node.toDOMNode();
+        currentTree = tree;
 
-        DOMNode.setAttribute('data-polarity', node.data.polarity);
-        DOMNode.setAttribute('data-valence', node.data.valence);
-        DOMNode.className = node.type;
+        currentTree.visit(function (node) {
+            var DOMNode;
+
+            if (!node.DOMTagName || !node.data.polarity) {
+                return
+            }
+
+            DOMNode = node.toDOMNode();
+
+            DOMNode.setAttribute('data-polarity', node.data.polarity);
+            DOMNode.setAttribute('data-valence', node.data.valence);
+            DOMNode.className = node.type;
+        });
+
+        currentDOMTree = currentTree.toDOMNode();
+        outputElement.appendChild(currentDOMTree);
     });
-
-    currentDOMTree = currentTree.toDOMNode();
-    outputElement.appendChild(currentDOMTree);
 }
 
 inputElement.addEventListener('input', function (event) {
