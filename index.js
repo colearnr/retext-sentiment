@@ -1,26 +1,45 @@
-var Retext = require('retext');
-var sentiment = require('retext-sentiment');
-var DOM = require('retext-dom');
-var visit = require('retext-visit');
+/**
+ * Dependencies.
+ */
 
-var inputElement = document.getElementsByTagName('textarea')[0];
-var outputElement = document.getElementsByTagName('div')[0];
+var Retext = require('wooorm/retext@0.4.0');
+var sentiment = require('wooorm/retext-sentiment@0.1.5');
+var dom = require('wooorm/retext-dom@0.2.3');
+var visit = require('wooorm/retext-visit@0.2.2');
 
-var retext = new Retext().use(sentiment).use(visit).use(DOM);
+/**
+ * Retext.
+ */
 
-var currentDOMTree, currentTree;
+var retext = new Retext()
+    .use(dom)
+    .use(visit)
+    .use(sentiment);
 
-function detectSentiment(value) {
-    retext.parse(value, function (err, tree) {
+/**
+ * DOM elements.
+ */
+
+var $input = document.getElementsByTagName('textarea')[0];
+var $output = document.getElementsByTagName('div')[0];
+
+/**
+ * Event handlers
+ */
+
+var tree;
+
+function oninputchange() {
+    if (tree) {
+        tree.toDOMNode().parentNode.removeChild(tree.toDOMNode());
+    }
+
+    retext.parse($input.value, function (err, root) {
         if (err) throw err;
 
-        if (currentDOMTree) {
-            currentDOMTree.parentNode.removeChild(currentDOMTree);
-        }
+        tree = root;
 
-        currentTree = tree;
-
-        currentTree.visit(function (node) {
+        tree.visit(function (node) {
             var DOMNode;
 
             if (!node.DOMTagName || !node.data.polarity) {
@@ -34,43 +53,18 @@ function detectSentiment(value) {
             DOMNode.className = node.type;
         });
 
-        currentDOMTree = currentTree.toDOMNode();
-        outputElement.appendChild(currentDOMTree);
+        $output.appendChild(tree.toDOMNode());
     });
 }
 
-inputElement.addEventListener('input', function (event) {
-    detectSentiment(inputElement.value);
-});
+/**
+ * Attach event handlers.
+ */
 
-detectSentiment(inputElement.value);
+$input.addEventListener('input', oninputchange);
 
-// function detectLanguage() {
-//     visualiseResults(retext.parse(inputElement.value).data.languages);
-// }
-//
-// function visualiseResults(results) {
-//     wrapperElement.style.display = '';
-//     cleanOutputElement();
-//     results = results.map(createResult);
-//
-//     results.forEach(function (node) {
-//         outputElement.appendChild(node);
-//     });
-// }
-//
-// function cleanOutputElement() {
-//     while (outputElement.firstElementChild) {
-//         outputElement.removeChild(outputElement.firstElementChild);
-//     }
-// }
-//
-// function createResult(result, n) {
-//     var node = document.createElement('li');
-//
-//     node.textContent = result[0] + ': ' + result[1];
-//
-//     return node;
-// }
-// 
-// detectLanguage();
+/**
+ * Provide initial answer.
+ */
+
+oninputchange();
