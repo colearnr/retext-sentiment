@@ -3,9 +3,10 @@
  */
 
 var Retext = require('wooorm/retext@0.4.0');
-var sentiment = require('wooorm/retext-sentiment@0.2.0');
-var dom = require('wooorm/retext-dom@0.2.3');
-var visit = require('wooorm/retext-visit@0.2.2');
+var sentiment = require('wooorm/retext-sentiment@0.3.0');
+var emoji = require('wooorm/retext-emoji@0.4.1');
+var dom = require('wooorm/retext-dom@0.3.0');
+var visit = require('wooorm/retext-visit@0.2.3');
 
 /**
  * Retext.
@@ -13,6 +14,7 @@ var visit = require('wooorm/retext-visit@0.2.2');
 
 var retext = new Retext()
     .use(dom)
+    .use(emoji)
     .use(visit)
     .use(sentiment);
 
@@ -24,7 +26,13 @@ var $input = document.getElementsByTagName('textarea')[0];
 var $output = document.getElementsByTagName('div')[0];
 
 /**
- * Event handlers
+ * Make sure emoji are created as DOM elements.
+ */
+
+retext.TextOM.EmoticonNode.prototype.DOMTagName = 'span';
+
+/**
+ * Event handlers.
  */
 
 var tree;
@@ -43,14 +51,16 @@ function oninputchange() {
             var DOMNode;
 
             if (!node.DOMTagName || !node.data.polarity) {
-                return
+                return;
             }
+
+            console.log(node, node.toString(), node.data.polarity);
 
             DOMNode = node.toDOMNode();
 
             DOMNode.setAttribute('data-polarity', node.data.polarity);
             DOMNode.setAttribute('data-valence', node.data.valence);
-            DOMNode.className = node.type;
+            DOMNode.className = node.type + ' ' + node.nodeName;
         });
 
         $output.appendChild(tree.toDOMNode());
