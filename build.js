@@ -88,8 +88,8 @@
  */
 
 var Retext = require('wooorm/retext@0.4.0');
-var sentiment = require('wooorm/retext-sentiment@0.3.0');
-var emoji = require('wooorm/retext-emoji@0.4.1');
+var sentiment = require('wooorm/retext-sentiment@0.4.0');
+var emoji = require('wooorm/retext-emoji@0.5.2');
 var dom = require('wooorm/retext-dom@0.3.0');
 var visit = require('wooorm/retext-visit@0.2.3');
 
@@ -164,7 +164,7 @@ $input.addEventListener('input', oninputchange);
 
 oninputchange();
 
-}, {"wooorm/retext@0.4.0":2,"wooorm/retext-sentiment@0.3.0":3,"wooorm/retext-emoji@0.4.1":4,"wooorm/retext-dom@0.3.0":5,"wooorm/retext-visit@0.2.3":6}],
+}, {"wooorm/retext@0.4.0":2,"wooorm/retext-sentiment@0.4.0":3,"wooorm/retext-emoji@0.5.2":4,"wooorm/retext-dom@0.3.0":5,"wooorm/retext-visit@0.2.3":6}],
 2: [function(require, module, exports) {
 'use strict';
 
@@ -4207,11 +4207,11 @@ module.exports = modifier(makeFinalWhiteSpaceSiblings);
  */
 
 var nlcstToString,
-    plugin,
+    modifier,
     expressions;
 
 nlcstToString = require('nlcst-to-string');
-plugin = require('../plugin');
+modifier = require('../modifier');
 expressions = require('../expressions');
 
 /**
@@ -4266,6 +4266,8 @@ function breakImplicitSentences(child, index, parent) {
             'type': 'SentenceNode',
             'children': children.slice(position + 1)
         });
+
+        return index + 1;
     }
 }
 
@@ -4273,9 +4275,9 @@ function breakImplicitSentences(child, index, parent) {
  * Expose `breakImplicitSentences` as a plugin.
  */
 
-module.exports = plugin(breakImplicitSentences);
+module.exports = modifier(breakImplicitSentences);
 
-}, {"nlcst-to-string":31,"../plugin":14,"../expressions":13}],
+}, {"nlcst-to-string":31,"../modifier":15,"../expressions":13}],
 29: [function(require, module, exports) {
 'use strict';
 
@@ -7615,7 +7617,315 @@ module.exports = {
   ":weary:": -2,
   ":wink:": 4,
   ":worried:": -4,
-  ":yum:": 4
+  ":yum:": 4,
+  ">:(": -4,
+  ">:[": -4,
+  ">:-(": -4,
+  ">:-[": -4,
+  ">=(": -4,
+  ">=[": -4,
+  ">=-(": -4,
+  ">=-[": -4,
+  ":\")": 3,
+  ":\"]": 3,
+  ":\"D": 3,
+  ":-\")": 3,
+  ":-\"]": 3,
+  ":-\"D": 3,
+  "=\")": 3,
+  "=\"]": 3,
+  "=\"D": 3,
+  "=-\")": 3,
+  "=-\"]": 3,
+  "=-\"D": 3,
+  ":/": -2,
+  ":\\": -2,
+  ":-/": -2,
+  ":-\\": -2,
+  "=/": -2,
+  "=\\": -2,
+  "=-/": -2,
+  "=-\\": -2,
+  ":,(": -2,
+  ":,[": -2,
+  ":,|": -2,
+  ":,-(": -2,
+  ":,-[": -2,
+  ":,-|": -2,
+  ":'(": -2,
+  ":'[": -2,
+  ":'|": -2,
+  ":'-(": -2,
+  ":'-[": -2,
+  ":'-|": -2,
+  "=,(": -2,
+  "=,[": -2,
+  "=,|": -2,
+  "=,-(": -2,
+  "=,-[": -2,
+  "=,-|": -2,
+  "='(": -2,
+  "='[": -2,
+  "='|": -2,
+  "='-(": -2,
+  "='-[": -2,
+  "='-|": -2,
+  ":(": -1,
+  ":[": -1,
+  ":-(": -1,
+  ":-[": -1,
+  "=(": -1,
+  "=[": -1,
+  "=-(": -1,
+  "=-[": -1,
+  "]:(": -5,
+  "]:[": -5,
+  "]:-(": -5,
+  "]:-[": -5,
+  "]=(": -5,
+  "]=[": -5,
+  "]=-(": -5,
+  "]=-[": -5,
+  "o:)": 4,
+  "o:]": 4,
+  "o:D": 4,
+  "o:-)": 4,
+  "o:-]": 4,
+  "o:-D": 4,
+  "o=)": 4,
+  "o=]": 4,
+  "o=D": 4,
+  "o=-)": 4,
+  "o=-]": 4,
+  "o=-D": 4,
+  "O:)": 4,
+  "O:]": 4,
+  "O:D": 4,
+  "O:-)": 4,
+  "O:-]": 4,
+  "O:-D": 4,
+  "O=)": 4,
+  "O=]": 4,
+  "O=D": 4,
+  "O=-)": 4,
+  "O=-]": 4,
+  "O=-D": 4,
+  "0:)": 4,
+  "0:]": 4,
+  "0:D": 4,
+  "0:-)": 4,
+  "0:-]": 4,
+  "0:-D": 4,
+  "0=)": 4,
+  "0=]": 4,
+  "0=D": 4,
+  "0=-)": 4,
+  "0=-]": 4,
+  "0=-D": 4,
+  ":,)": 4,
+  ":,]": 4,
+  ":,D": 4,
+  ":,-)": 4,
+  ":,-]": 4,
+  ":,-D": 4,
+  ":')": 4,
+  ":']": 4,
+  ":'D": 4,
+  ":'-)": 4,
+  ":'-]": 4,
+  ":'-D": 4,
+  "=,)": 4,
+  "=,]": 4,
+  "=,D": 4,
+  "=,-)": 4,
+  "=,-]": 4,
+  "=,-D": 4,
+  "=')": 4,
+  "=']": 4,
+  "='D": 4,
+  "='-)": 4,
+  "='-]": 4,
+  "='-D": 4,
+  ":*": 3,
+  ":-*": 3,
+  "=*": 3,
+  "=-*": 3,
+  "x)": 1,
+  "x]": 1,
+  "xD": 1,
+  "x-)": 1,
+  "x-]": 1,
+  "x-D": 1,
+  "X)": 1,
+  "X]": 1,
+  "X-)": 1,
+  "X-]": 1,
+  "X-D": 1,
+  ":|": 0,
+  ":-|": 0,
+  "=|": 0,
+  "=-|": 0,
+  ":-": 0,
+  ":o": -2,
+  ":O": -2,
+  ":0": -2,
+  ":-o": -2,
+  ":-O": -2,
+  ":-0": -2,
+  "=o": -2,
+  "=O": -2,
+  "=0": -2,
+  "=-o": -2,
+  "=-O": -2,
+  "=-0": -2,
+  ":@": -5,
+  ":-@": -5,
+  "=@": -5,
+  "=-@": -5,
+  ":D": 3,
+  ":-D": 3,
+  "=D": 3,
+  "=-D": 3,
+  ":)": 3,
+  ":]": 3,
+  ":-)": 3,
+  ":-]": 3,
+  "=)": 3,
+  "=]": 3,
+  "=-)": 3,
+  "=-]": 3,
+  "]:)": -4,
+  "]:]": -4,
+  "]:D": -4,
+  "]:-)": -4,
+  "]:-]": -4,
+  "]:-D": -4,
+  "]=)": -4,
+  "]=]": -4,
+  "]=D": -4,
+  "]=-)": -4,
+  "]=-]": -4,
+  "]=-D": -4,
+  ":,'(": -4,
+  ":,'[": -4,
+  ":,'-(": -4,
+  ":,'-[": -4,
+  ":',(": -4,
+  ":',[": -4,
+  ":',-(": -4,
+  ":',-[": -4,
+  "=,'(": -4,
+  "=,'[": -4,
+  "=,'-(": -4,
+  "=,'-[": -4,
+  "=',(": -4,
+  "=',[": -4,
+  "=',-(": -4,
+  "=',-[": -4,
+  ":p": 1,
+  ":P": 1,
+  ":d": 1,
+  ":-p": 1,
+  ":-P": 1,
+  ":-d": 1,
+  "=p": 1,
+  "=P": 1,
+  "=d": 1,
+  "=-p": 1,
+  "=-P": 1,
+  "=-d": 1,
+  "xP": 0,
+  "x-p": 0,
+  "x-P": 0,
+  "x-d": 0,
+  "Xp": 0,
+  "Xd": 0,
+  "X-p": 0,
+  "X-P": 0,
+  "X-d": 0,
+  ";p": -1,
+  ";P": -1,
+  ";d": -1,
+  ";-p": -1,
+  ";-P": -1,
+  ";-d": -1,
+  "8)": 1,
+  "8]": 1,
+  "8D": 1,
+  "8-)": 1,
+  "8-]": 1,
+  "8-D": 1,
+  "B)": 1,
+  "B]": 1,
+  "B-)": 1,
+  "B-]": 1,
+  "B-D": 1,
+  ",:(": -1,
+  ",:[": -1,
+  ",:-(": -1,
+  ",:-[": -1,
+  ",=(": -1,
+  ",=[": -1,
+  ",=-(": -1,
+  ",=-[": -1,
+  "':(": -1,
+  "':[": -1,
+  "':-(": -1,
+  "':-[": -1,
+  "'=(": -1,
+  "'=[": -1,
+  "'=-(": -1,
+  "'=-[": -1,
+  ",:)": 3,
+  ",:]": 3,
+  ",:D": 3,
+  ",:-)": 3,
+  ",:-]": 3,
+  ",:-D": 3,
+  ",=)": 3,
+  ",=]": 3,
+  ",=D": 3,
+  ",=-)": 3,
+  ",=-]": 3,
+  ",=-D": 3,
+  "':)": 3,
+  "':]": 3,
+  "':D": 3,
+  "':-)": 3,
+  "':-]": 3,
+  "':-D": 3,
+  "'=)": 3,
+  "'=]": 3,
+  "'=D": 3,
+  "'=-)": 3,
+  "'=-]": 3,
+  "'=-D": 3,
+  ":$": -2,
+  ":s": -2,
+  ":z": -2,
+  ":S": -2,
+  ":Z": -2,
+  ":-$": -2,
+  ":-s": -2,
+  ":-z": -2,
+  ":-S": -2,
+  ":-Z": -2,
+  "=$": -2,
+  "=s": -2,
+  "=z": -2,
+  "=S": -2,
+  "=Z": -2,
+  "=-$": -2,
+  "=-s": -2,
+  "=-z": -2,
+  "=-S": -2,
+  "=-Z": -2,
+  ";)": 4,
+  ";]": 4,
+  ";D": 4,
+  ";-)": 4,
+  ";-]": 4,
+  ";-D": 4
 }
 ;
 }, {}],
@@ -7727,11 +8037,18 @@ var unicodes,
     shortcodes,
     shortcode,
     gemoji,
-    modifier;
+    emoticons,
+    emojiModifier,
+    emoticonModifier,
+    affixEmoticonModifier;
 
+emoticons = require('emoticon');
 gemoji = require('gemoji');
-modifier = require('nlcst-emoji-modifier');
+emojiModifier = require('nlcst-emoji-modifier');
+emoticonModifier = require('nlcst-emoticon-modifier');
+affixEmoticonModifier = require('nlcst-affix-emoticon-modifier');
 
+emoticons = emoticons.emoticon;
 unicodes = gemoji.unicode;
 names = gemoji.name;
 
@@ -7741,6 +8058,11 @@ for (key in names) {
     shortcode = ':' + key + ':';
     shortcodes[shortcode] = names[key];
     shortcodes[shortcode].shortcode = shortcode;
+}
+
+for (key in emoticons) {
+    emoticons[key].names = names[emoticons[key].name].names;
+    emoticons[key].shortcode = names[emoticons[key].name].shortcode;
 }
 
 /**
@@ -7754,7 +8076,8 @@ function toEmoji() {
         value;
 
     self = this;
-    value = shortcodes[self.toString()];
+    value = self.toString();
+    value = shortcodes[value] || emoticons[value];
 
     if (value) {
         self.fromString(value.emoji);
@@ -7772,7 +8095,8 @@ function toGemoji() {
         value;
 
     self = this;
-    value = unicodes[self.toString()];
+    value = self.toString();
+    value = unicodes[value] || emoticons[value];
 
     if (value) {
         self.fromString(value.shortcode);
@@ -7804,7 +8128,8 @@ function changeFactory(onchange) {
         self = this;
         value = self.toString();
 
-        information = unicodes[value] || shortcodes[value];
+        information = unicodes[value] || shortcodes[value] ||
+            emoticons[value];
 
         data = self.data;
 
@@ -7952,7 +8277,9 @@ function emoji(retext, options) {
      * Add the NLCST plugin.
      */
 
-    modifier(retext.parser);
+    emoticonModifier(retext.parser);
+    emojiModifier(retext.parser);
+    affixEmoticonModifier(retext.parser);
 }
 
 /**
@@ -7961,8 +8288,711 @@ function emoji(retext, options) {
 
 module.exports = emoji;
 
-}, {"gemoji":36,"nlcst-emoji-modifier":37}],
+}, {"emoticon":36,"gemoji":37,"nlcst-emoji-modifier":38,"nlcst-emoticon-modifier":39,"nlcst-affix-emoticon-modifier":40}],
 36: [function(require, module, exports) {
+'use strict';
+
+/**
+ * Cached methods.
+ */
+
+var has;
+
+has = Object.prototype.hasOwnProperty;
+
+/**
+ * Data.
+ */
+
+var emoticons;
+
+emoticons = require('./data/emoticons.json');
+
+/**
+ * Create a dictionary to hold the emoticons by emoji.
+ */
+
+var emoji;
+
+emoji = {};
+
+/**
+ * Create a dictionary to hold the emoticons by text
+ * characters.
+ */
+
+var text;
+
+text = {};
+
+/**
+ * Transform all emoji.
+ */
+
+var emoticon,
+    information,
+    index;
+
+for (emoticon in emoticons) {
+    /* istanbul ignore else */
+    if (has.call(emoticons, emoticon)) {
+        information = emoticons[emoticon];
+
+        /**
+         * Add information to `unicode` map.
+         */
+
+        emoji[information.emoji] = information;
+
+        /**
+         * Add information to `text` map.
+         */
+
+        index = information.emoticons.length;
+
+        while (index--) {
+            text[information.emoticons[index]] = information;
+        }
+    }
+}
+
+/**
+ * Expose the `text` dictionary (`text`) as `emoticon`.
+ */
+
+exports.emoticon = text;
+
+/**
+ * Expose the `unicode` dictionary (`emoji`) as `unicode`.
+ */
+
+exports.unicode = emoji;
+
+}, {"./data/emoticons.json":41}],
+41: [function(require, module, exports) {
+module.exports = {
+  "angry": {
+    "name": "angry",
+    "emoji": "😠",
+    "tags": [
+      "mad",
+      "annoyed"
+    ],
+    "description": "angry face",
+    "emoticons": [
+      ">:(",
+      ">:[",
+      ">:-(",
+      ">:-[",
+      ">=(",
+      ">=[",
+      ">=-(",
+      ">=-["
+    ]
+  },
+  "blush": {
+    "name": "blush",
+    "emoji": "😊",
+    "tags": [
+      "proud"
+    ],
+    "description": "smiling face with smiling eyes",
+    "emoticons": [
+      ":\")",
+      ":\"]",
+      ":\"D",
+      ":-\")",
+      ":-\"]",
+      ":-\"D",
+      "=\")",
+      "=\"]",
+      "=\"D",
+      "=-\")",
+      "=-\"]",
+      "=-\"D"
+    ]
+  },
+  "broken_heart": {
+    "name": "broken_heart",
+    "emoji": "💔",
+    "tags": [],
+    "description": "broken heart",
+    "emoticons": [
+      "<\\3",
+      "</3"
+    ]
+  },
+  "confused": {
+    "name": "confused",
+    "emoji": "😕",
+    "tags": [],
+    "description": "confused face",
+    "emoticons": [
+      ":/",
+      ":\\",
+      ":-/",
+      ":-\\",
+      "=/",
+      "=\\",
+      "=-/",
+      "=-\\"
+    ]
+  },
+  "cry": {
+    "name": "cry",
+    "emoji": "😢",
+    "tags": [
+      "sad",
+      "tear"
+    ],
+    "description": "crying face",
+    "emoticons": [
+      ":,(",
+      ":,[",
+      ":,|",
+      ":,-(",
+      ":,-[",
+      ":,-|",
+      ":'(",
+      ":'[",
+      ":'|",
+      ":'-(",
+      ":'-[",
+      ":'-|",
+      "=,(",
+      "=,[",
+      "=,|",
+      "=,-(",
+      "=,-[",
+      "=,-|",
+      "='(",
+      "='[",
+      "='|",
+      "='-(",
+      "='-[",
+      "='-|"
+    ]
+  },
+  "frowning": {
+    "name": "frowning",
+    "emoji": "😦",
+    "tags": [],
+    "description": "frowning face with open mouth",
+    "emoticons": [
+      ":(",
+      ":[",
+      ":-(",
+      ":-[",
+      "=(",
+      "=[",
+      "=-(",
+      "=-["
+    ]
+  },
+  "heart": {
+    "name": "heart",
+    "emoji": "❤️",
+    "tags": [
+      "love"
+    ],
+    "description": "heavy black heart",
+    "emoticons": [
+      "<3"
+    ]
+  },
+  "imp": {
+    "name": "imp",
+    "emoji": "👿",
+    "tags": [
+      "angry",
+      "devil",
+      "evil",
+      "horns"
+    ],
+    "description": "imp",
+    "emoticons": [
+      "]:(",
+      "]:[",
+      "]:-(",
+      "]:-[",
+      "]=(",
+      "]=[",
+      "]=-(",
+      "]=-["
+    ]
+  },
+  "innocent": {
+    "name": "innocent",
+    "emoji": "😇",
+    "tags": [
+      "angel"
+    ],
+    "description": "smiling face with halo",
+    "emoticons": [
+      "o:)",
+      "o:]",
+      "o:D",
+      "o:-)",
+      "o:-]",
+      "o:-D",
+      "o=)",
+      "o=]",
+      "o=D",
+      "o=-)",
+      "o=-]",
+      "o=-D",
+      "O:)",
+      "O:]",
+      "O:D",
+      "O:-)",
+      "O:-]",
+      "O:-D",
+      "O=)",
+      "O=]",
+      "O=D",
+      "O=-)",
+      "O=-]",
+      "O=-D",
+      "0:)",
+      "0:]",
+      "0:D",
+      "0:-)",
+      "0:-]",
+      "0:-D",
+      "0=)",
+      "0=]",
+      "0=D",
+      "0=-)",
+      "0=-]",
+      "0=-D"
+    ]
+  },
+  "joy": {
+    "name": "joy",
+    "emoji": "😂",
+    "tags": [
+      "tears"
+    ],
+    "description": "face with tears of joy",
+    "emoticons": [
+      ":,)",
+      ":,]",
+      ":,D",
+      ":,-)",
+      ":,-]",
+      ":,-D",
+      ":')",
+      ":']",
+      ":'D",
+      ":'-)",
+      ":'-]",
+      ":'-D",
+      "=,)",
+      "=,]",
+      "=,D",
+      "=,-)",
+      "=,-]",
+      "=,-D",
+      "=')",
+      "=']",
+      "='D",
+      "='-)",
+      "='-]",
+      "='-D"
+    ]
+  },
+  "kissing": {
+    "name": "kissing",
+    "emoji": "😗",
+    "tags": [],
+    "description": "kissing face",
+    "emoticons": [
+      ":*",
+      ":-*",
+      "=*",
+      "=-*"
+    ]
+  },
+  "laughing": {
+    "name": "laughing",
+    "emoji": "😆",
+    "tags": [
+      "happy",
+      "haha"
+    ],
+    "description": "smiling face with open mouth and tightly-closed eyes",
+    "emoticons": [
+      "x)",
+      "x]",
+      "xD",
+      "x-)",
+      "x-]",
+      "x-D",
+      "X)",
+      "X]",
+      "X-)",
+      "X-]",
+      "X-D"
+    ]
+  },
+  "man": {
+    "name": "man",
+    "emoji": "👨",
+    "tags": [
+      "mustache",
+      "father",
+      "dad"
+    ],
+    "description": "man",
+    "emoticons": [
+      ":3",
+      ":-3",
+      "=3",
+      "=-3",
+      ";3",
+      ";-3",
+      "x3",
+      "x-3",
+      "X3",
+      "X-3"
+    ]
+  },
+  "neutral_face": {
+    "name": "neutral_face",
+    "emoji": "😐",
+    "tags": [
+      "meh"
+    ],
+    "description": "neutral face",
+    "emoticons": [
+      ":|",
+      ":-|",
+      "=|",
+      "=-|"
+    ]
+  },
+  "no_mouth": {
+    "name": "no_mouth",
+    "emoji": "😶",
+    "tags": [
+      "mute",
+      "silence"
+    ],
+    "description": "face without mouth",
+    "emoticons": [
+      ":-"
+    ]
+  },
+  "open_mouth": {
+    "name": "open_mouth",
+    "emoji": "😮",
+    "tags": [
+      "surprise",
+      "impressed",
+      "wow"
+    ],
+    "description": "face with open mouth",
+    "emoticons": [
+      ":o",
+      ":O",
+      ":0",
+      ":-o",
+      ":-O",
+      ":-0",
+      "=o",
+      "=O",
+      "=0",
+      "=-o",
+      "=-O",
+      "=-0"
+    ]
+  },
+  "rage": {
+    "name": "rage",
+    "emoji": "😡",
+    "tags": [
+      "angry"
+    ],
+    "description": "pouting face",
+    "emoticons": [
+      ":@",
+      ":-@",
+      "=@",
+      "=-@"
+    ]
+  },
+  "smile": {
+    "name": "smile",
+    "emoji": "😄",
+    "tags": [
+      "happy",
+      "joy",
+      "pleased"
+    ],
+    "description": "smiling face with open mouth and smiling eyes",
+    "emoticons": [
+      ":D",
+      ":-D",
+      "=D",
+      "=-D"
+    ]
+  },
+  "smiley": {
+    "name": "smiley",
+    "emoji": "😃",
+    "tags": [
+      "happy",
+      "joy",
+      "haha"
+    ],
+    "description": "smiling face with open mouth",
+    "emoticons": [
+      ":)",
+      ":]",
+      ":-)",
+      ":-]",
+      "=)",
+      "=]",
+      "=-)",
+      "=-]"
+    ]
+  },
+  "smiling_imp": {
+    "name": "smiling_imp",
+    "emoji": "😈",
+    "tags": [
+      "devil",
+      "evil",
+      "horns"
+    ],
+    "description": "smiling face with horns",
+    "emoticons": [
+      "]:)",
+      "]:]",
+      "]:D",
+      "]:-)",
+      "]:-]",
+      "]:-D",
+      "]=)",
+      "]=]",
+      "]=D",
+      "]=-)",
+      "]=-]",
+      "]=-D"
+    ]
+  },
+  "sob": {
+    "name": "sob",
+    "emoji": "😭",
+    "tags": [
+      "sad",
+      "cry",
+      "bawling"
+    ],
+    "description": "loudly crying face",
+    "emoticons": [
+      ":,'(",
+      ":,'[",
+      ":,'-(",
+      ":,'-[",
+      ":',(",
+      ":',[",
+      ":',-(",
+      ":',-[",
+      "=,'(",
+      "=,'[",
+      "=,'-(",
+      "=,'-[",
+      "=',(",
+      "=',[",
+      "=',-(",
+      "=',-["
+    ]
+  },
+  "stuck_out_tongue": {
+    "name": "stuck_out_tongue",
+    "emoji": "😛",
+    "tags": [],
+    "description": "face with stuck-out tongue",
+    "emoticons": [
+      ":p",
+      ":P",
+      ":d",
+      ":-p",
+      ":-P",
+      ":-d",
+      "=p",
+      "=P",
+      "=d",
+      "=-p",
+      "=-P",
+      "=-d"
+    ]
+  },
+  "stuck_out_tongue_closed_eyes": {
+    "name": "stuck_out_tongue_closed_eyes",
+    "emoji": "😝",
+    "tags": [
+      "prank"
+    ],
+    "description": "face with stuck-out tongue and tightly-closed eyes",
+    "emoticons": [
+      "xP",
+      "x-p",
+      "x-P",
+      "x-d",
+      "Xp",
+      "Xd",
+      "X-p",
+      "X-P",
+      "X-d"
+    ]
+  },
+  "stuck_out_tongue_winking_eye": {
+    "name": "stuck_out_tongue_winking_eye",
+    "emoji": "😜",
+    "tags": [
+      "prank",
+      "silly"
+    ],
+    "description": "face with stuck-out tongue and winking eye",
+    "emoticons": [
+      ";p",
+      ";P",
+      ";d",
+      ";-p",
+      ";-P",
+      ";-d"
+    ]
+  },
+  "sunglasses": {
+    "name": "sunglasses",
+    "emoji": "😎",
+    "tags": [
+      "cool"
+    ],
+    "description": "smiling face with sunglasses",
+    "emoticons": [
+      "8)",
+      "8]",
+      "8D",
+      "8-)",
+      "8-]",
+      "8-D",
+      "B)",
+      "B]",
+      "B-)",
+      "B-]",
+      "B-D"
+    ]
+  },
+  "sweat": {
+    "name": "sweat",
+    "emoji": "😓",
+    "tags": [],
+    "description": "face with cold sweat",
+    "emoticons": [
+      ",:(",
+      ",:[",
+      ",:-(",
+      ",:-[",
+      ",=(",
+      ",=[",
+      ",=-(",
+      ",=-[",
+      "':(",
+      "':[",
+      "':-(",
+      "':-[",
+      "'=(",
+      "'=[",
+      "'=-(",
+      "'=-["
+    ]
+  },
+  "sweat_smile": {
+    "name": "sweat_smile",
+    "emoji": "😅",
+    "tags": [
+      "hot"
+    ],
+    "description": "smiling face with open mouth and cold sweat",
+    "emoticons": [
+      ",:)",
+      ",:]",
+      ",:D",
+      ",:-)",
+      ",:-]",
+      ",:-D",
+      ",=)",
+      ",=]",
+      ",=D",
+      ",=-)",
+      ",=-]",
+      ",=-D",
+      "':)",
+      "':]",
+      "':D",
+      "':-)",
+      "':-]",
+      "':-D",
+      "'=)",
+      "'=]",
+      "'=D",
+      "'=-)",
+      "'=-]",
+      "'=-D"
+    ]
+  },
+  "unamused": {
+    "name": "unamused",
+    "emoji": "😒",
+    "tags": [
+      "meh"
+    ],
+    "description": "unamused face",
+    "emoticons": [
+      ":$",
+      ":s",
+      ":z",
+      ":S",
+      ":Z",
+      ":-$",
+      ":-s",
+      ":-z",
+      ":-S",
+      ":-Z",
+      "=$",
+      "=s",
+      "=z",
+      "=S",
+      "=Z",
+      "=-$",
+      "=-s",
+      "=-z",
+      "=-S",
+      "=-Z"
+    ]
+  },
+  "wink": {
+    "name": "wink",
+    "emoji": "😉",
+    "tags": [
+      "flirt"
+    ],
+    "description": "winking face",
+    "emoticons": [
+      ";)",
+      ";]",
+      ";D",
+      ";-)",
+      ";-]",
+      ";-D"
+    ]
+  }
+};
+}, {}],
+37: [function(require, module, exports) {
 'use strict';
 
 /**
@@ -8060,8 +9090,8 @@ exports.unicode = gemoji;
 
 exports.name = named;
 
-}, {"./data/gemoji.json":38}],
-38: [function(require, module, exports) {
+}, {"./data/gemoji.json":42}],
+42: [function(require, module, exports) {
 module.exports = {
   "😄": {
     "description": "smiling face with open mouth and smiling eyes",
@@ -14822,7 +15852,7 @@ module.exports = {
   }
 };
 }, {}],
-37: [function(require, module, exports) {
+38: [function(require, module, exports) {
 'use strict';
 
 /**
@@ -15002,57 +16032,7 @@ function mergeEmoji(child, index, parent) {
     }
 }
 
-/**
- * Move emoticons following a terminal marker (thus in
- * the next sentence) to the previous sentence.
- *
- * @param {NLCSTNode} child
- * @param {number} index
- * @param {NLCSTParagraphNode} parent
- * @return {undefined|number}
- */
-
-function mergeAffixEmoji(child, index, parent) {
-    var children,
-        prev,
-        position,
-        node;
-
-    children = child.children;
-
-    if (
-        children &&
-        children.length &&
-        index !== 0
-    ) {
-        position = -1;
-
-        while (children[++position]) {
-            node = children[position];
-
-            if (node.type === EMOTICON_NODE) {
-                prev = parent.children[index - 1];
-
-                prev.children = prev.children.concat(
-                    children.slice(0, position + 1)
-                );
-
-                child.children = children.slice(position + 1);
-
-                /**
-                 * Next, iterate over the node again.
-                 */
-
-                return index;
-            } else if (node.type !== 'WhiteSpaceNode') {
-                break;
-            }
-        }
-    }
-}
-
-var emojiModifier,
-    affixEmojiModifier;
+var emojiModifier;
 
 function attach(parser) {
     if (!parser || !parser.parse) {
@@ -15064,16 +16044,14 @@ function attach(parser) {
     }
 
     /**
-     * Make sure to not re-attach the modifiers.
+     * Make sure to not re-attach the modifier.
      */
 
     if (!emojiModifier) {
         emojiModifier = parser.constructor.modifier(mergeEmoji);
-        affixEmojiModifier = parser.constructor.modifier(mergeAffixEmoji);
     }
 
     parser.useFirst('tokenizeSentence', emojiModifier);
-    parser.useFirst('tokenizeParagraph', affixEmojiModifier);
 }
 
 /**
@@ -15082,8 +16060,8 @@ function attach(parser) {
 
 module.exports = attach;
 
-}, {"./data/emoji.json":39,"nlcst-to-string":31}],
-39: [function(require, module, exports) {
+}, {"./data/emoji.json":43,"nlcst-to-string":31}],
+43: [function(require, module, exports) {
 module.exports = {
   "unicode": [
     "😄",
@@ -16805,6 +17783,619 @@ module.exports = {
     "small_blue_diamond"
   ]
 };
+}, {}],
+39: [function(require, module, exports) {
+'use strict';
+
+/**
+ * Dependencies.
+ */
+
+var information,
+    nlcstToString;
+
+information = require('./data/emoticon.json');
+nlcstToString = require('nlcst-to-string');
+
+/**
+ * Constants: node types.
+ */
+
+var EMOTICON_NODE;
+
+EMOTICON_NODE = 'EmoticonNode';
+
+/**
+ * Constants: magic numbers.
+ *
+ * Emoticons are treated by a parser as multiple nodes.
+ * Because this modifier walks forwards, when a non-
+ * emoticon matches it would normaly walk to the end
+ * (the last node). However, because the longest emoticon
+ * is tokenized as `Punctuation` (eyes), `Punctuation`
+ * (a tear), `Punctuation` (another tear), `Punctuation`
+ * (a nose), and `Punctuation` (a frowning mouth), we can
+ * safely break when the modifier has walked 5 characters.
+ */
+
+var MAX_EMOTICON_LENGTH;
+
+MAX_EMOTICON_LENGTH = 5;
+
+/**
+ * Constants: info.
+ */
+
+var emoticons,
+    start,
+    end;
+
+emoticons = information.emoticons;
+start = information.start;
+end = information.end;
+
+start = new RegExp(start.join('|'));
+
+/**
+ * Merge emoticons into an `EmoticonNode`.
+ *
+ * @param {CSTNode} child
+ * @param {number} index
+ * @param {CSTNode} parent
+ * @return {undefined|number} - Either void, or the
+ *   next index to iterate over.
+ */
+
+function mergeEmoticons(child, index, parent) {
+    var siblings,
+        siblingIndex,
+        node,
+        value,
+        subvalue;
+
+    /**
+     * Check if `child`s first character could be used
+     * to start an emoticon.
+     */
+
+    if (start.test(nlcstToString(child).charAt(0))) {
+        siblings = parent.children;
+
+        value = '';
+
+        siblingIndex = index;
+
+        node = child;
+
+        while (node) {
+            if (value.length >= MAX_EMOTICON_LENGTH) {
+                return;
+            }
+
+            subvalue = nlcstToString(node);
+
+            value += subvalue;
+
+            /**
+             * The second test, if the last character of
+             * the current node is superfluous but
+             * improves performance by 30%.
+             */
+
+            if (
+                node.type !== EMOTICON_NODE &&
+                end.indexOf(subvalue.charAt(subvalue.length - 1)) !== -1 &&
+                emoticons.indexOf(value) !== -1
+            ) {
+                siblings.splice(index, siblingIndex - index + 1, {
+                    'type': EMOTICON_NODE,
+                    'value': value
+                });
+
+                /**
+                 * Some emoticons, like `:-`, can be followed by
+                 * more characters to form other emoticons.
+                 */
+
+                return index - 1;
+            }
+
+            node = siblings[++siblingIndex];
+        }
+    }
+}
+
+var emoticonModifier;
+
+function attach(parser) {
+    if (!parser || !parser.parse) {
+        throw new Error(
+            '`parser` is not a valid parser for ' +
+            '`attach(parser)`. Make sure something ' +
+            'like `parse-latin` is passed.'
+        );
+    }
+
+    /**
+     * Make sure to not re-attach the modifiers.
+     */
+
+    if (!emoticonModifier) {
+        emoticonModifier = parser.constructor.modifier(mergeEmoticons);
+    }
+
+    parser.useFirst('tokenizeSentence', emoticonModifier);
+}
+
+/**
+ * Expose `attach`.
+ */
+
+module.exports = attach;
+
+}, {"./data/emoticon.json":44,"nlcst-to-string":31}],
+44: [function(require, module, exports) {
+module.exports = {
+  "emoticons": [
+    ">=-[",
+    ">=-(",
+    ">=[",
+    ">=(",
+    ">:-[",
+    ">:-(",
+    ">:[",
+    ">:(",
+    "=-\"D",
+    "=-\"]",
+    "=-\")",
+    "=\"D",
+    "=\"]",
+    "=\")",
+    ":-\"D",
+    ":-\"]",
+    ":-\")",
+    ":\"D",
+    ":\"]",
+    ":\")",
+    "</3",
+    "<\\3",
+    "=-\\",
+    "=-/",
+    "=\\",
+    "=/",
+    ":-\\",
+    ":-/",
+    ":\\",
+    ":/",
+    "='-|",
+    "='-[",
+    "='-(",
+    "='|",
+    "='[",
+    "='(",
+    "=,-|",
+    "=,-[",
+    "=,-(",
+    "=,|",
+    "=,[",
+    "=,(",
+    ":'-|",
+    ":'-[",
+    ":'-(",
+    ":'|",
+    ":'[",
+    ":'(",
+    ":,-|",
+    ":,-[",
+    ":,-(",
+    ":,|",
+    ":,[",
+    ":,(",
+    "=-[",
+    "=-(",
+    "=[",
+    "=(",
+    ":-[",
+    ":-(",
+    ":[",
+    ":(",
+    "<3",
+    "]=-[",
+    "]=-(",
+    "]=[",
+    "]=(",
+    "]:-[",
+    "]:-(",
+    "]:[",
+    "]:(",
+    "0=-D",
+    "0=-]",
+    "0=-)",
+    "0=D",
+    "0=]",
+    "0=)",
+    "0:-D",
+    "0:-]",
+    "0:-)",
+    "0:D",
+    "0:]",
+    "0:)",
+    "O=-D",
+    "O=-]",
+    "O=-)",
+    "O=D",
+    "O=]",
+    "O=)",
+    "O:-D",
+    "O:-]",
+    "O:-)",
+    "O:D",
+    "O:]",
+    "O:)",
+    "o=-D",
+    "o=-]",
+    "o=-)",
+    "o=D",
+    "o=]",
+    "o=)",
+    "o:-D",
+    "o:-]",
+    "o:-)",
+    "o:D",
+    "o:]",
+    "o:)",
+    "='-D",
+    "='-]",
+    "='-)",
+    "='D",
+    "=']",
+    "=')",
+    "=,-D",
+    "=,-]",
+    "=,-)",
+    "=,D",
+    "=,]",
+    "=,)",
+    ":'-D",
+    ":'-]",
+    ":'-)",
+    ":'D",
+    ":']",
+    ":')",
+    ":,-D",
+    ":,-]",
+    ":,-)",
+    ":,D",
+    ":,]",
+    ":,)",
+    "=-*",
+    "=*",
+    ":-*",
+    ":*",
+    "X-D",
+    "X-]",
+    "X-)",
+    "X]",
+    "X)",
+    "x-D",
+    "x-]",
+    "x-)",
+    "xD",
+    "x]",
+    "x)",
+    "X-3",
+    "X3",
+    "x-3",
+    "x3",
+    ";-3",
+    ";3",
+    "=-3",
+    "=3",
+    ":-3",
+    ":3",
+    "=-|",
+    "=|",
+    ":-|",
+    ":|",
+    ":-",
+    "=-0",
+    "=-O",
+    "=-o",
+    "=0",
+    "=O",
+    "=o",
+    ":-0",
+    ":-O",
+    ":-o",
+    ":0",
+    ":O",
+    ":o",
+    "=-@",
+    "=@",
+    ":-@",
+    ":@",
+    "=-D",
+    "=D",
+    ":-D",
+    ":D",
+    "=-]",
+    "=-)",
+    "=]",
+    "=)",
+    ":-]",
+    ":-)",
+    ":]",
+    ":)",
+    "]=-D",
+    "]=-]",
+    "]=-)",
+    "]=D",
+    "]=]",
+    "]=)",
+    "]:-D",
+    "]:-]",
+    "]:-)",
+    "]:D",
+    "]:]",
+    "]:)",
+    "=',-[",
+    "=',-(",
+    "=',[",
+    "=',(",
+    "=,'-[",
+    "=,'-(",
+    "=,'[",
+    "=,'(",
+    ":',-[",
+    ":',-(",
+    ":',[",
+    ":',(",
+    ":,'-[",
+    ":,'-(",
+    ":,'[",
+    ":,'(",
+    "=-d",
+    "=-P",
+    "=-p",
+    "=d",
+    "=P",
+    "=p",
+    ":-d",
+    ":-P",
+    ":-p",
+    ":d",
+    ":P",
+    ":p",
+    "X-d",
+    "X-P",
+    "X-p",
+    "Xd",
+    "Xp",
+    "x-d",
+    "x-P",
+    "x-p",
+    "xP",
+    ";-d",
+    ";-P",
+    ";-p",
+    ";d",
+    ";P",
+    ";p",
+    "B-D",
+    "B-]",
+    "B-)",
+    "B]",
+    "B)",
+    "8-D",
+    "8-]",
+    "8-)",
+    "8D",
+    "8]",
+    "8)",
+    "'=-[",
+    "'=-(",
+    "'=[",
+    "'=(",
+    "':-[",
+    "':-(",
+    "':[",
+    "':(",
+    ",=-[",
+    ",=-(",
+    ",=[",
+    ",=(",
+    ",:-[",
+    ",:-(",
+    ",:[",
+    ",:(",
+    "'=-D",
+    "'=-]",
+    "'=-)",
+    "'=D",
+    "'=]",
+    "'=)",
+    "':-D",
+    "':-]",
+    "':-)",
+    "':D",
+    "':]",
+    "':)",
+    ",=-D",
+    ",=-]",
+    ",=-)",
+    ",=D",
+    ",=]",
+    ",=)",
+    ",:-D",
+    ",:-]",
+    ",:-)",
+    ",:D",
+    ",:]",
+    ",:)",
+    "=-Z",
+    "=-S",
+    "=-z",
+    "=-s",
+    "=-$",
+    "=Z",
+    "=S",
+    "=z",
+    "=s",
+    "=$",
+    ":-Z",
+    ":-S",
+    ":-z",
+    ":-s",
+    ":-$",
+    ":Z",
+    ":S",
+    ":z",
+    ":s",
+    ":$",
+    ";-D",
+    ";-]",
+    ";-)",
+    ";D",
+    ";]",
+    ";)"
+  ],
+  "start": [
+    ">",
+    "<",
+    "0",
+    "O",
+    "o",
+    "]",
+    "X",
+    "x",
+    "B",
+    "8",
+    "'",
+    ",",
+    "=",
+    ":",
+    ";"
+  ],
+  "end": [
+    "\\",
+    "/",
+    "*",
+    "3",
+    "|",
+    "-",
+    "0",
+    "O",
+    "o",
+    "@",
+    "d",
+    "P",
+    "p",
+    "[",
+    "(",
+    "Z",
+    "S",
+    "z",
+    "s",
+    "$",
+    "D",
+    "]",
+    ")"
+  ]
+}
+;
+}, {}],
+40: [function(require, module, exports) {
+'use strict';
+
+/**
+ * Constant: node types.
+ */
+
+var EMOTICON_NODE;
+
+EMOTICON_NODE = 'EmoticonNode';
+
+/**
+ * Move emoticons following a terminal marker (thus in
+ * the next sentence) to the previous sentence.
+ *
+ * @param {NLCSTNode} child
+ * @param {number} index
+ * @param {NLCSTParagraphNode} parent
+ * @return {undefined|number}
+ */
+
+function mergeAffixEmoji(child, index, parent) {
+    var children,
+        prev,
+        position,
+        node;
+
+    children = child.children;
+
+    if (
+        children &&
+        children.length &&
+        index !== 0
+    ) {
+        position = -1;
+
+        while (children[++position]) {
+            node = children[position];
+
+            if (node.type === EMOTICON_NODE) {
+                prev = parent.children[index - 1];
+
+                prev.children = prev.children.concat(
+                    children.slice(0, position + 1)
+                );
+
+                child.children = children.slice(position + 1);
+
+                /**
+                 * Next, iterate over the node again.
+                 */
+
+                return index;
+            } else if (node.type !== 'WhiteSpaceNode') {
+                break;
+            }
+        }
+    }
+}
+
+/**
+ * Attach.
+ */
+
+var affixEmojiModifier;
+
+function attach(parser) {
+    if (!parser || !parser.parse) {
+        throw new Error(
+            '`parser` is not a valid parser for ' +
+            '`attach(parser)`. Make sure something ' +
+            'like `parse-latin` is passed.'
+        );
+    }
+
+    /**
+     * Make sure to not re-attach the modifier.
+     */
+
+    if (!affixEmojiModifier) {
+        affixEmojiModifier = parser.constructor.modifier(mergeAffixEmoji);
+    }
+
+    parser.useFirst('tokenizeParagraph', affixEmojiModifier);
+}
+
+/**
+ * Expose `attach`.
+ */
+
+module.exports = attach;
+
 }, {}],
 5: [function(require, module, exports) {
 'use strict';

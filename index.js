@@ -3,8 +3,8 @@
  */
 
 var Retext = require('wooorm/retext@0.4.0');
-var sentiment = require('wooorm/retext-sentiment@0.3.0');
-var emoji = require('wooorm/retext-emoji@0.4.1');
+var sentiment = require('wooorm/retext-sentiment@0.4.0');
+var emoji = require('wooorm/retext-emoji@0.5.2');
 var dom = require('wooorm/retext-dom@0.3.0');
 var visit = require('wooorm/retext-visit@0.2.3');
 
