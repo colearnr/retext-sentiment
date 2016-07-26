@@ -1,6 +1,6 @@
 {
   "name": "retext-sentiment",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Detect the sentiment of text with Retext",
   "license": "MIT",
   "keywords": [
@@ -25,23 +25,24 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wooorm/retext-sentiment.git"
+    "url": "https://github.com/colearnr/retext-sentiment.git"
   },
-  "bugs": "https://github.com/wooorm/retext-sentiment/issues",
+  "bugs": "https://github.com/colearnr/retext-sentiment/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Prabhu Subramanian <prabhu@colearnr.com>"
   ],
   "dependencies": {
     "nlcst-to-string": "^2.0.0",
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
-    "afinn-111": "^0.1.5",
+    "afinn-111": "git://github.com/colearnr/afinn-111#1.0.1",
     "browserify": "^13.0.1",
     "emoji-emotion": "^0.1.1",
     "emoticon": "^1.0.0",
-    "eslint": "^2.0.0",
+    "eslint": "^3.1.1",
     "esmangle": "^1.0.1",
     "gemoji": "^1.0.0",
     "istanbul": "^0.4.0",
