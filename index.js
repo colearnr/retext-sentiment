@@ -23,6 +23,9 @@ var NEUTRAL = 'neutral';
 var POSITIVE = 'positive';
 var NEGATIVE = 'negative';
 
+var NEGATION_WORDS = ['not', 'neither', 'nor', 'but',
+                    'however', 'rather', 'irony'];
+
 /**
  * Classify, from a given `polarity` between `-5` and
  * `5`, if the polarity is `NEGATIVE` (negative),
@@ -47,9 +50,7 @@ function isNegation(node) {
     value = nlcstToString(node).toLowerCase();
 
     if (
-        value === 'not' ||
-        value === 'neither' ||
-        value === 'nor' ||
+        NEGATION_WORDS.indexOf(value) !== -1 ||
         /n['’]t/.test(value)
     ) {
         return true;

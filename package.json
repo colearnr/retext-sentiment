@@ -1,6 +1,6 @@
 {
   "name": "retext-sentiment",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Detect the sentiment of text with Retext",
   "license": "MIT",
   "keywords": [
@@ -38,7 +38,7 @@
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
-    "afinn-111": "git://github.com/colearnr/afinn-111#1.0.1",
+    "afinn-111": "git://github.com/colearnr/afinn-111#1.0.2",
     "browserify": "^13.0.1",
     "emoji-emotion": "^0.1.1",
     "emoticon": "^1.0.0",
