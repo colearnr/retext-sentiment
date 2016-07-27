@@ -38,7 +38,7 @@
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
-    "afinn-111": "git://github.com/colearnr/afinn-111#1.0.3",
+    "afinn-111": "git://github.com/colearnr/afinn-111#1.0.4",
     "browserify": "^13.0.1",
     "emoji-emotion": "^0.1.1",
     "emoticon": "^1.0.0",
